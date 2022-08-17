@@ -9,7 +9,7 @@ class _DemoState extends State<Demo> {
   final TextEditingController _heightController = TextEditingController();
   final TextEditingController _weightController = TextEditingController();
 
-  int? _result;
+  double? _result;
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +17,7 @@ class _DemoState extends State<Demo> {
       appBar: AppBar(
         title: Text('BMI Calculator'),
         centerTitle: true,
-        backgroundColor: Colors.green,
+        backgroundColor: Colors.pinkAccent,
       ),
       body: Container(
         padding: EdgeInsets.symmetric(horizontal: 10.0),
@@ -28,7 +28,7 @@ class _DemoState extends State<Demo> {
               keyboardType: TextInputType.number,
               decoration: InputDecoration(
                 labelText: 'height in cm',
-                icon: Icon(Icons.lens_sharp),
+                icon: Icon(Icons.trending_up),
               ),
             ),
             SizedBox(height: 20),
@@ -37,23 +37,25 @@ class _DemoState extends State<Demo> {
               keyboardType: TextInputType.number,
               decoration: InputDecoration(
                 labelText: 'weight in kg',
-                icon: Icon(Icons.accessible_forward_outlined),
+                icon: Icon(Icons.line_weight),
               ),
             ),
             SizedBox(height: 15),
             RaisedButton(
-              color: Colors.red,
+              color: Colors.pinkAccent,
               child: Text(
                 "Calculate",
-                style: TextStyle(color: Colors.black),
+                style: TextStyle(color: Colors.white),
               ),
               onPressed: calculateBMI,
             ),
             SizedBox(height: 15),
             Text(
-              _result == null ? "Enter Value" : "$_result",
+              _result == null
+                  ? "Enter Value"
+                  : "${_result?.toStringAsFixed(2)}",
               style: TextStyle(
-                color: Color.fromARGB(255, 192, 17, 17),
+                color: Colors.redAccent,
                 fontSize: 19.4,
                 fontWeight: FontWeight.w500,
               ),
@@ -71,7 +73,7 @@ class _DemoState extends State<Demo> {
     double heightSquare = height * height;
     double result = weight / heightSquare;
 
-    _result = result as int?;
+    _result = result;
 
     setState(() {});
   }
